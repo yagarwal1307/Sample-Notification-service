@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.notificationpoc</groupId>
-	<artifactId>Notification-POC</artifactId>
+	<artifactId>backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Notification-POC</name>
+	<name>backend</name>
 	<description>POC for notifications service</description>
 	<properties>
 		<java.version>11</java.version>
