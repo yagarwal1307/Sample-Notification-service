@@ -1,4 +1,4 @@
-package com.notifications.Services
+package com.notifications.Notifications.Services
 
 class Test {
 }

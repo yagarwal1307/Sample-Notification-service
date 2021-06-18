@@ -1,0 +1,22 @@
+Configuration:
+  status: warn
+Appenders:
+  Console:
+    name: Console_Json_Appender
+    target: SYSTEM_OUT
+    JsonLayout:
+      compact: false
+      complete: true
+      objectMessageAsJsonObject: true
+Loggers:
+  AsyncRoot:
+    level: info
+    includeLocation: true
+    AppenderRef:
+      - ref: Console_Json_Appender
+AsyncLogger:
+  - name: async-logger
+    level: info
+    includeLocation: true
+    AppenderRef:
+      - ref: Console_Json_Appender

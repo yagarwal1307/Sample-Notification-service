@@ -1,4 +1,4 @@
-package com.notifications.Controllers
+package com.notifications.Notifications.Controllers
 
 class Test {
 }

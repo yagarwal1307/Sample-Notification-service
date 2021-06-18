@@ -1,4 +1,4 @@
-package com.notifications.Models
+package com.notifications.Notifications.Models
 
 class Test {
 }
