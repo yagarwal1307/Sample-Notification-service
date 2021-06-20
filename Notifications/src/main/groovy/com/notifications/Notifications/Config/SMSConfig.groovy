@@ -1,7 +1,12 @@
 package com.notifications.Notifications.Config
 
+import org.springframework.boot.context.properties.ConfigurationProperties
+import org.springframework.context.annotation.Configuration
+
+@Configuration
+@ConfigurationProperties(prefix = "sms")
 class SMSConfig {
-    String account_sid;
-    String from_number;
-    String auth_token;
+    String accountSid
+    String fromNumber
+    String authToken
 }

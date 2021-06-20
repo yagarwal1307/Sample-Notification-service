@@ -2,14 +2,14 @@ package com.notifications.Notifications.template
 
 import com.notifications.Notifications.Config.SMSConfig
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.context.properties.ConfigurationProperties
+import org.springframework.context.annotation.Configuration
 
-@ConfigurationProperties(prefix="sms")
+@Configuration
 class SMSConfiguration {
     SMSConfig config
 
     @Autowired
     SMSConfiguration(SMSConfig smsConfig) {
-        this.config = config
+        this.config = smsConfig
     }
 }
