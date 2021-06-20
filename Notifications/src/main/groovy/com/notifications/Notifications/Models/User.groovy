@@ -6,27 +6,14 @@ import org.springframework.data.mongodb.core.mapping.Document
 @Document
 class User {
     @Id
-    private String userId
-    private String userName
-    private String phoneNumber
+    String userId
 
-    String getUserName() {
-        return this.userName
-    }
+    String userName
+    String phoneNumber
 
-    void setUserName(String userName) {
+    User(String userName, String phoneNumber) {
         this.userName = userName
-    }
-
-    String getUserPhoneNumber() {
-        return this.phoneNumber
-    }
-
-    void setUserPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber
     }
 
-    String getUserId() {
-        return this.userId
-    }
 }
