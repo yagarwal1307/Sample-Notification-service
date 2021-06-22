@@ -14,6 +14,7 @@ class LoginConsumerService {
 
     @KafkaListener(topics = "loginTopic", groupId = "group_id")
     void consume(String phoneNumber) {
-        smsService.sendSMS('Yash Agarwal', phoneNumber)
+//        smsService.sendSMS(user.userName, user.phoneNumber)
+        System.out.println("Hello "+ phoneNumber)
     }
 }

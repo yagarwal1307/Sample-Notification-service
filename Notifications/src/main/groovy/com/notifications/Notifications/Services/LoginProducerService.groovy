@@ -6,10 +6,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 class LoginProducerService {
-    private final KafkaTemplate<String, UserConfig> loginTemplate;
+    private final KafkaTemplate<String, String> loginTemplate;
     private final String TOPIC = "loginTopic";
 
-    LoginProducerService(KafkaTemplate<String, UserConfig> loginTemplate) {
+    LoginProducerService(KafkaTemplate<String, String> loginTemplate) {
         this.loginTemplate = loginTemplate;
     }
 

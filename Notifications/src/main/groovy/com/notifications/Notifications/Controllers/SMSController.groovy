@@ -20,8 +20,8 @@ public class SMSController {
     }
 
     @RequestMapping(value='/sms', method= RequestMethod.POST)
-    Message sensSMS(@RequestParam("PhoneNumber") String PhoneNumber, @RequestParam("UserName") String UserName) {
-        return smsService.sendSMS(UserName, PhoneNumber)
+    Message sensSMS(@RequestParam("PhoneNumber") String phoneNumber, @RequestParam("UserName") String userName) {
+        return smsService.sendSMS(userName, phoneNumber)
     }
 
     @RequestMapping(value = '/sms/reply', produces = "application/xml", method=RequestMethod.POST)
