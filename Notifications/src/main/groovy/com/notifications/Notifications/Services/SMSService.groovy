@@ -74,5 +74,4 @@ class SMSService {
         MessagingResponse twiml = new MessagingResponse.Builder().message(sms).build();
         return twiml.toXml();
     }
-
 }
