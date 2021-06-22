@@ -1,6 +1,6 @@
-package com.notifications.Notifications.Controllers
+package com.notifications.Notifications.controller
 
-import com.notifications.Notifications.Services.LoginProducerService
+import com.notifications.Notifications.service.LoginProducerService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod

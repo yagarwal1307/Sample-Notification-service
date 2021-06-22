@@ -1,6 +1,6 @@
-package com.notifications.Notifications.Services
+package com.notifications.Notifications.service
 
-import com.notifications.Notifications.Config.UserConfig
+
 import org.springframework.kafka.annotation.KafkaListener
 import org.springframework.stereotype.Service
 

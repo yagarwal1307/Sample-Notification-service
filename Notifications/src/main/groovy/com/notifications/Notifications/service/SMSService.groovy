@@ -1,8 +1,8 @@
-package com.notifications.Notifications.Services
+package com.notifications.Notifications.service
 
-import com.notifications.Notifications.Config.SMSConfig
-import com.notifications.Notifications.Models.SMSConversation
-import com.notifications.Notifications.Models.User
+import com.notifications.Notifications.config.SMSConfig
+import com.notifications.Notifications.model.SMSConversation
+import com.notifications.Notifications.model.User
 import com.notifications.Notifications.repository.SMSConversationRepository
 import com.notifications.Notifications.repository.UserRepository
 import com.twilio.Twilio

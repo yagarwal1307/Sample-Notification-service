@@ -1,4 +1,4 @@
-package com.notifications.Notifications.Config
+package com.notifications.Notifications.config
 
 class UserConfig {
     String userName

@@ -1,4 +1,4 @@
-package com.notifications.Notifications.Models
+package com.notifications.Notifications.model
 
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document

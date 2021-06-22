@@ -1,6 +1,6 @@
 package com.notifications.Notifications.template
 
-import com.notifications.Notifications.Config.SMSConfig
+import com.notifications.Notifications.config.SMSConfig
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Configuration
 
