@@ -1,5 +1,6 @@
 package com.notifications.Notifications.controller
 
+import com.notifications.Notifications.annotation.ValidateTwilioSignature
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
@@ -25,6 +26,7 @@ public class SMSController {
     }
 
     @RequestMapping(value = '/sms/reply', produces = "application/xml", method=RequestMethod.POST)
+    @ValidateTwilioSignature
     @ResponseBody
     String replyToSMS(@RequestParam("From") String from, @RequestParam("Body") String body) {
         return smsService.replyToSMS(from, body)

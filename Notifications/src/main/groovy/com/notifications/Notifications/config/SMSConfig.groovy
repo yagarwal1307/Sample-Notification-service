@@ -9,4 +9,5 @@ class SMSConfig {
     String accountSid
     String fromNumber
     String authToken
+    String webhookUrlOverride
 }
