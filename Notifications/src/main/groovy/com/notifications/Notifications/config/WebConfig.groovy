@@ -8,7 +8,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 
 @Configuration
 class WebConfig implements WebMvcConfigurer {
-
     private TwilioValidationHandlerInterceptor handlerInterceptor
 
     @Autowired

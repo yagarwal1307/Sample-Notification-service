@@ -3,8 +3,10 @@ package com.notifications.Notifications.interceptor
 import com.notifications.Notifications.annotation.ValidateTwilioSignature
 import com.notifications.Notifications.config.SMSConfig
 import com.twilio.security.RequestValidator
+import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Component
 import org.springframework.web.method.HandlerMethod
 import org.springframework.web.servlet.HandlerInterceptor
 import org.springframework.web.util.UriComponentsBuilder
@@ -12,8 +14,8 @@ import org.springframework.web.util.UriComponentsBuilder
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import java.nio.charset.StandardCharsets
-import java.util.logging.Logger
 
+@Component
 class TwilioValidationHandlerInterceptor implements HandlerInterceptor {
     private final Logger logger = LoggerFactory.getLogger(TwilioValidationHandlerInterceptor.class)
 
@@ -28,7 +30,11 @@ class TwilioValidationHandlerInterceptor implements HandlerInterceptor {
 
     @Override
     boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object requestHandler) throws Exception {
-        if(((HandlerMethod) requestHandler).getMethodAnnotation(ValidateTwilioSignature.class) == null) {
+        if(requestHandler instanceof HandlerMethod) {
+            if(((HandlerMethod) requestHandler).getMethodAnnotation(ValidateTwilioSignature.class) == null) {
+                return true
+            }
+        } else {
             return true
         }
 
@@ -44,7 +50,7 @@ class TwilioValidationHandlerInterceptor implements HandlerInterceptor {
                 if(twilioValidator.validate(validationURL, validationParameters, signatureHeader)) {
                     return true
                 } else {
-                    logger.warning("Validation failed for {} request to {}", request.getMethod(), validationURL)
+                    logger.warn("Validation failed for {} request to {}", request.getMethod(), validationURL)
                     return validationFailedResponse(response)
                 }
 

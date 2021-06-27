@@ -10,12 +10,18 @@ import com.twilio.rest.api.v2010.account.Message
 import com.twilio.twiml.MessagingResponse
 import com.twilio.twiml.messaging.Message as TwiMessage
 import com.twilio.type.PhoneNumber
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.scheduling.annotation.Async
 import org.springframework.stereotype.Service
+
+import java.util.concurrent.CompletableFuture
 
 
 @Service
 class SMSService {
+    private Logger logger = LoggerFactory.getLogger(SMSService.class)
     private String FROM_NUMBER
     private UserRepository userRepository
     private SMSConversationRepository smsConversationRepository
@@ -28,9 +34,14 @@ class SMSService {
         this.smsConversationRepository = smsConversationRepository
     }
 
-    Message sendSMS(String username, String phoneNumber) {
+    @Async("asyncTaskExecutor")
+    CompletableFuture<Message> sendSMS(String username, String phoneNumber) {
 
         String messageBody = "Hello There! Testing new account!!"
+
+        //Added next line just to simulate a heavy operation. Uncomment it if wanna use
+        //Thread.sleep(10000L)
+
 
         //Check user in database via phone number
         //Add user to the database if he/she doesn't already exists.
@@ -44,12 +55,12 @@ class SMSService {
             userRepository.insert(newUser)
             smsConversationRepository.insert(smsConversation)
 
-            System.out.println("Added new user to the database!")
+            logger.info("Added new user to the database!")
         } else {
             SMSConversation oldSMSConversation = smsConversationRepository.findByPhoneNumber(phoneNumber)
             oldSMSConversation.smsConversation.push(messageBody)
             smsConversationRepository.save(oldSMSConversation)
-            System.out.println("User already exists in database!")
+            logger.info("User already exists in database!")
         }
 
         Message message = Message.creator(
@@ -58,7 +69,7 @@ class SMSService {
                 messageBody
         ).create();
 
-        return message;
+        return CompletableFuture.completedFuture(message);
     }
 
     String replyToSMS(String from, String body) {
@@ -73,5 +84,13 @@ class SMSService {
         TwiMessage sms = new TwiMessage.Builder(reply).build();
         MessagingResponse twiml = new MessagingResponse.Builder().message(sms).build();
         return twiml.toXml();
+    }
+
+    @Async("asyncTaskExecutor")
+    CompletableFuture<String> testAsync() throws InterruptedException {
+        logger.info("Thread execution starts here! Hope this is a unique message!")
+        Thread.sleep(10000L)
+        logger.info("Hooraay! Test completed!")
+        return CompletableFuture.completedFuture("Hello world!")
     }
 }
