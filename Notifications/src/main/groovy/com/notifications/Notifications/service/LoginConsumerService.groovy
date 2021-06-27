@@ -1,6 +1,6 @@
 package com.notifications.Notifications.service
 
-
+import com.notifications.Notifications.config.UserConfig
 import org.springframework.kafka.annotation.KafkaListener
 import org.springframework.stereotype.Service
 
@@ -13,8 +13,8 @@ class LoginConsumerService {
     }
 
     @KafkaListener(topics = "loginTopic", groupId = "group_id")
-    void consume(String phoneNumber) {
-//        smsService.sendSMS(user.userName, user.phoneNumber)
-        System.out.println("Hello "+ phoneNumber)
+    void consume(UserConfig user) {
+        //System.out.println("Hello "+ user)
+        smsService.sendSMS(user.userName, user.phoneNumber)
     }
 }

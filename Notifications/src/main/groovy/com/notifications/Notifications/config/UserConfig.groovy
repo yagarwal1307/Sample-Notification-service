@@ -4,6 +4,8 @@ class UserConfig {
     String userName
     String phoneNumber
 
+    UserConfig() {}
+
     UserConfig(String userName, String phoneNumber) {
         this.userName = userName
         this.phoneNumber = phoneNumber
